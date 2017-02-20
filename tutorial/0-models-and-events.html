@@ -42,10 +42,22 @@ var Tweet = Backbone.Model.extend({
    * subclass Backbone.Model --basically make a constructor (function) whose 
    * prototype has your provided properties.
    */
+
+message: function() {
+
+},
+
+change: function(message) {
+  Tweet.listenTo(message, 'change', message.hasChanged(e))
+}
+
+
 });
 
 /* Backbone models are pseudoclassically instantiated: */
-var myTweet = new Tweet();
+var myTweet = new Tweet(
+  myTweet = Tweet.extend());
+
 
 /* Backbone models are meant to store data, so it's important to understand
  * their getters and setters: */
@@ -54,7 +66,7 @@ myTweet.set('message', 'Hello, world!');
 /* Using the reference, get the message attribute of the model and display it:
  * http://backbonejs.org/#Model-get */
 
-// window.alert(YOUR CODE HERE);
+window.alert(myTweet.get('message'));
 
 /* - Backbone EVENTS ----------------------------------------------------------
  * Backbone gives us the ability to listen for events on our models,
@@ -83,7 +95,7 @@ myTweet.on('change',
     console.log(e);
 
     // Write code to log the changed attribute:
-    // console.log(YOUR CODE HERE);
+    window.alert(myTweet.get('message'));
   }
 );
 
@@ -96,7 +108,10 @@ myTweet.on('change',
  * by the framework. Review these now (at http://backbonejs.org/#Model-set)
  * and write a one-liner that will make our `change` listener fire: */
 
-// myTweetYOUR CODE HERE;
+
+console.log(myTweet.set('message', 'changed'));
+
+
 
 /* Once you have the `change` event firing, move on to rendering! */
   </script>
